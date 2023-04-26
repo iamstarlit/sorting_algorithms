@@ -36,8 +36,10 @@ void quick_sort_hoare(int *array, size_t size);
 
 /* HELPERS AND UTILS FUNCTION PROTOTYPES */
 void swap(void *a, void *b, size_t size);
+listint_t *swap_node(listint_t *node, listint_t **list);
+int lumoto_partition(int *array, ssize_t first, ssize_t last, size_t size);
+void qs(int *array, ssize_t first, ssize_t last, size_t size);
 void print_array(const int *array, size_t size);
 void print_list(const listint_t *list);
-listint_t *swap_node(listint_t *node, listint_t **list);
 
 #endif /* __SORT_H__ */
