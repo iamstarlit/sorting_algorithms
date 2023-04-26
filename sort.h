@@ -40,6 +40,7 @@ void swap(void *a, void *b, size_t size);
 listint_t *swap_node(listint_t *node, listint_t **list);
 void swap_node_ahead(listint_t **list, listint_t **tail, listint_t **shaker);
 void swap_node_behind(listint_t **list, listint_t **tail, listint_t **shaker);
+int find_maximum(int *array, size_t size);
 int lumoto_partition(int *array, ssize_t first, ssize_t last, size_t size);
 void qs(int *array, ssize_t first, ssize_t last, size_t size);
 void print_array(const int *array, size_t size);
