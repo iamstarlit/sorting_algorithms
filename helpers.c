@@ -147,3 +147,27 @@ void swap_node_behind(listint_t **list, listint_t **tail, listint_t **shaker)
 	/* Update the shaker pointer to point to the previous node */
 	*shaker = tmp;
 }
+
+
+/**
+ * find_maximum - Finds the maximum integer in an array.
+ * @array: Array of integers.
+ * @size: Number of elements in @array
+ *
+ * Return: The maximum integer in the @array
+ */
+int find_maximum(int *array, size_t size)
+{
+	int i, max_int;
+
+	/* Loop through the array and find maximum value */
+	for (max_int = array[0], i = 1; i < size; i++)
+	{
+		if (array[i] > max_int)
+		{
+			max_int = array[i];
+		}
+	}
+
+	return (max_int);
+}
