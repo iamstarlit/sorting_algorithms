@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdbool.h>
 
 /**
  * struct listint_s - Doubly linked list node
@@ -37,6 +38,8 @@ void quick_sort_hoare(int *array, size_t size);
 /* HELPERS AND UTILS FUNCTION PROTOTYPES */
 void swap(void *a, void *b, size_t size);
 listint_t *swap_node(listint_t *node, listint_t **list);
+void swap_node_ahead(listint_t **list, listint_t **tail, listint_t **shaker);
+void swap_node_behind(listint_t **list, listint_t **tail, listint_t **shaker);
 int lumoto_partition(int *array, ssize_t first, ssize_t last, size_t size);
 void qs(int *array, ssize_t first, ssize_t last, size_t size);
 void print_array(const int *array, size_t size);
