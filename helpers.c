@@ -20,3 +20,37 @@ void swap(void *a, void *b, size_t size)
 
 	free(tmp);  /* Free temporary memory */
 }
+
+
+/**
+ * swap_node - Swaps a node with its previous node.
+ * @node: Pointer to node to be swapped.
+ * @list: Pointer to the head node of the list.
+ *
+ * Return: Pointer to the node that was just swapped.
+ */
+listint_t *swap_node(listint_t *node, listint_t **list)
+{
+	listint_t *prev_node, *next_node;
+
+	prev_node = node->prev;
+	next_node = node->next;
+
+	/* Update the next and prev pointers of the nodes */
+	if (prev_node)
+		prev_node->next = next_node;
+
+	if (next_node)
+		next_node->prev = prev_node;
+
+	node->prev = prev_node->prev;
+	prev_node->prev = node;
+	prev_node->next = node->next;
+	node->next = prev_node;
+
+	/* If the previous node is now the head node */
+	if (node->prev == NULL)
+		*list = node;
+
+	return (node);
+}
