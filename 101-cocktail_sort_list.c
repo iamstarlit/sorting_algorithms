@@ -1,6 +1,57 @@
 #include "sort.h"
 
 /**
+ * cocktail_sort_list - Sorts a doubly-linked list of integers in
+ * ascending order using the cocktail shaker algorithm.
+ * @list: Pointer to the head of a listint_t doubly-linked list.
+ *
+ * Description: This function implements the cocktail shaker sort
+ * algorithm. It takes a pointer to the head of the list and
+ * modifies the list in place.
+ */
+void cocktail_sort_list(listint_t **list)
+{
+	listint_t *tail, *shaker;
+	bool shaken_not_stirred = false;
+
+	if (list == NULL || *list == NULL || (*list)->next == NULL)
+		return;
+
+	/* Find the last element of the list */
+	for (tail = *list; tail->next != NULL;)
+		tail = tail->next;
+
+	while (shaken_not_stirred == false)
+	{
+		shaken_not_stirred = true;
+		/* Move from left o right through the list. */
+		for (shaker = *list; shaker != tail; shaker = shaker->next)
+		{
+			/* If current node > next node, swap */
+			if (shaker->n > shaker->next->n)
+			{
+				swap_node_ahead(list, &tail, &shaker);
+				/* Print the list after each swap */
+				print_list((const listint_t *)*list);
+				shaken_not_stirred = false;
+			}
+		}
+		/* Move from right to left through the list */
+		for (shaker = shaker->prev; shaker != *list;
+				shaker = shaker->prev)
+		{
+			/* If current node < previous node, swap */
+			if (shaker->n < shaker->prev->n)
+			{
+				swap_node_behind(list, &tail, &shaker);
+				print_list((const listint_t *)*list);
+				shaken_not_stirred = false;
+			}
+		}
+	}
+}
+
+/**
  * swap_node_ahead - Swaps a node in a doubly-lined list with the node ahead.
  * @list: Pointer to the head of a doubly-linked list.
  * @tail: Pointer to the tail of the doubly-linked list.
@@ -91,55 +142,4 @@ void swap_node_behind(listint_t **list, listint_t **tail, listint_t **shaker)
 
 	/* Update the shaker pointer to point to the previous node */
 	*shaker = tmp;
-}
-
-/**
- * cocktail_sort_list - Sorts a doubly-linked list of integers in
- * ascending order using the cocktail shaker algorithm.
- * @list: Pointer to the head of a listint_t doubly-linked list.
- *
- * Description: This function implements the cocktail shaker sort
- * algorithm. It takes a pointer to the head of the list and
- * modifies the list in place.
- */
-void cocktail_sort_list(listint_t **list)
-{
-	listint_t *tail, *shaker;
-	bool shaken_not_stirred = false;
-
-	if (list == NULL || *list == NULL || (*list)->next == NULL)
-		return;
-
-	/* Find the last element of the list */
-	for (tail = *list; tail->next != NULL;)
-		tail = tail->next;
-
-	while (shaken_not_stirred == false)
-	{
-		shaken_not_stirred = true;
-		/* Move from left o right through the list. */
-		for (shaker = *list; shaker != tail; shaker = shaker->next)
-		{
-			/* If current node > next node, swap */
-			if (shaker->n > shaker->next->n)
-			{
-				swap_node_ahead(list, &tail, &shaker);
-				/* Print the list after each swap */
-				print_list((const listint_t *)*list);
-				shaken_not_stirred = false;
-			}
-		}
-		/* Move from right to left through the list */
-		for (shaker = shaker->prev; shaker != *list;
-				shaker = shaker->prev)
-		{
-			/* If current node < previous node, swap */
-			if (shaker->n < shaker->prev->n)
-			{
-				swap_node_behind(list, &tail, &shaker);
-				print_list((const listint_t *)*list);
-				shaken_not_stirred = false;
-			}
-		}
-	}
 }
