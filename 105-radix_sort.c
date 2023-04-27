@@ -14,18 +14,22 @@ void radix_counting_sort(int *array, size_t size, int significant_digit,
 	int count[10] = {0};
 	size_t i;
 
+	/* Count the number of occurences of each digit */
 	for (i = 0; i < size; i++)
 		count[(array[i] / significant_digit) % 10] += 1;
 
+	/* Calculate the prefix sum of the counts */
 	for (i = 1; i < 10; i++)
 		count[i] += count[i - 1];
 
+	/* Copy the sorted elements into the buffer */
 	for (i = size - 1; i < (size_t)(-1); i--)
 	{
 		buffer[count[(array[i] / significant_digit) % 10] - 1] = array[i];
 		count[(array[i] / significant_digit) % 10]--;
 	}
 
+	/* Copy the buffer back into the original array */
 	for (i = 0; i < size; i++)
 		array[i] = buffer[i];
 }
@@ -49,11 +53,14 @@ void radix_sort(int *array, size_t size)
 	if (buffer == NULL)
 		return;
 
+	/* Get the maximum value in the array */
 	max_value = find_maximum(array, size);
 
+	/* Sort the array by considering each significant digit */
 	for (significant_digit = 1; max_value / significant_digit > 0;
 			significant_digit *= 10)
 	{
+		/* Sort the array on the current digit using counting sort */
 		radix_counting_sort(array, size, significant_digit, buffer);
 		print_array(array, size);
 	}
