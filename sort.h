@@ -43,6 +43,8 @@ void swap_node_behind(listint_t **list, listint_t **tail, listint_t **shaker);
 int find_maximum(int *array, size_t size);
 int lumoto_partition(int *array, ssize_t first, ssize_t last, size_t size);
 void qs(int *array, ssize_t first, ssize_t last, size_t size);
+void merge(int *subarr, int *buff, size_t beg, size_t mid, size_t end);
+void divide_and_sort(int *subarr, int *buff, size_t beg, size_t end);
 void print_array(const int *array, size_t size);
 void print_list(const listint_t *list);
 
