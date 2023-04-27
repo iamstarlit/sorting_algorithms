@@ -15,9 +15,9 @@
  */
 typedef struct listint_s
 {
-    const int n;
-    struct listint_s *prev;
-    struct listint_s *next;
+	const int n;
+	struct listint_s *prev;
+	struct listint_s *next;
 } listint_t;
 
 
@@ -46,6 +46,8 @@ void qs(int *array, ssize_t first, ssize_t last, size_t size);
 void merge(int *subarr, int *buff, size_t beg, size_t mid, size_t end);
 void divide_and_sort(int *subarr, int *buff, size_t beg, size_t end);
 void restore_heap_down(int *array, size_t size, size_t root, size_t end);
+void radix_counting_sort(int *array, size_t size, int significant_digit,
+		int *buffer);
 void print_array(const int *array, size_t size);
 void print_list(const listint_t *list);
 
