@@ -161,7 +161,7 @@ int find_maximum(int *array, size_t size)
 	int i, max_int;
 
 	/* Loop through the array and find maximum value */
-	for (max_int = array[0], i = 1; i < size; i++)
+	for (max_int = array[0], i = 1; i < (int)size; i++)
 	{
 		if (array[i] > max_int)
 		{
