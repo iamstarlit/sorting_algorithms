@@ -14,25 +14,25 @@
  */
 void restore_heap_down(int *array, size_t size, size_t root, size_t end)
 {
-	size_t child, node;
+	size_t child, swap_index;
 
 	while ((child = 2 * root + 1) <= end)
 	{
-		node = root;
+		swap_index = root;
 
-		if (array[node] < array[child])
-			node = child;
+		if (array[swap_index] < array[child])
+			swap_index = child;
 
-		if (child + 1 <= end && array[node] < array[child + 1])
-			node = child + 1;
+		if (child + 1 <= end && array[swap_index] < array[child + 1])
+			swap_index = child + 1;
 
-		if (node == root)
+		if (swap_index == root)
 			return;
 
-		swap(array + root, array + node, sizeof(int));
+		swap(array + root, array + swap_index, sizeof(int));
 		print_array(array, size);
 
-		root = node;
+		root = swap_index;
 	}
 }
 
